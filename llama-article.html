@@ -5,35 +5,86 @@
     <title>Llama article</title>
     <style>
         body{
-            background-color: rgb(247, 238, 200);
+            background-color: rgba(250, 243, 243, 0.8);
         }
         .container{
             display: flex;
             flex: wrap;
         }
         article{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: rgb(224, 221, 206);
-            margin: 10px;
-            padding: 5px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: rgba(255, 245, 202, 0.1);
+            padding: 10px;
+            border: 0.5px solid rgba(22, 20, 18, 0.5);
+            border-radius:2%;
+            color:rgba(22, 22, 22, 0.9);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
         }
         section{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        img{
+            display:inline;
+            width:40%;
+            float:left;
+            margin-right: 10px;
         }
         aside{
-            flex-shrink: 0;
-            background-color: gray;
-            margin: 10px;
             padding: 5px;
+            text-align: center;
         }
 
         footer{
-            margin: 10px;
+            margin: 10px 0 10px 0 ;
             padding: 5px;
             background-color: antiquewhite;
         }
         h1{
             text-align: center;
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1.5rem;
+        }
+        #table-of-content ul li {
+            list-style-type: none;
+            list-style-position: inside;
+            border-radius: 50%;
+            background-color:rgba(119, 93, 76, 0.65);
+            line-height: 1.5rem;
+            margin-bottom: 5px;
+            padding-top:3rem;
+            padding-bottom:3rem;
+            padding-left:5px;
+            padding-right:5px;
+            color:white;
+        }
+        p{
+            font-size: 1rem;
+            letter-spacing:0.02rem;
+            line-height: 1.5rem;
+        }
+        a, #table-of-content{
+            font-family: "Open Sans", OpenSans, "Helvetica Neue", Arial, sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.01em;
+            font-weight:bold;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        a:hover li{
+            background-color: rgba(250, 191, 152, 0.65);
+        }
+        #period{
+            width:80%;
+            margin-left:10%;
+            background: #c7bdb1; 
+            opacity: 0.7; 
+            -webkit-transition: .2s; 
+            transition: opacity .2s;
+        }
+        #history #period:hover {
+            opacity: 1; 
         }
     </style>
     </head>
@@ -42,36 +93,49 @@
     <div class="container">
         <aside>
             <div id = "table-of-content">
-                <ul> Table of content </ul>
-                <li>Summary</li>
-                <li>History</li>
-                <li>Characteristics</li>
-                <li>Nutrition</li>
+                <ul>
+                <a href ="#summary"><li>Summary</li></a>
+                <a href ="#history"><li>History</li></a>
+                <a href ="#characteristics"><li>Characteristics</li></a>
+                <a href ="#nutrition"><li>Nutrition</li></a>
+                </ul>
             </div>
         </aside>
         <section>
             <article id ="summary">
                 <h1>Summary</h1> 
-                <img src= "./llama.jpg" alt="photo of llama" width=40%>
                 <p class="p-summary">
                     The llama is a South American relative of the camel, though the llama does not have a hump.
                 </p>
                 <p class="p-summary">
+                    <img src= "./llama.jpg" alt="photo of llama">
                     These sturdy creatures are domestic animals used by the peoples of the Andes Mountains. (Their wild relatives are guanacos and vicuñas). Native peoples have used llamas as pack animals for centuries. Typically, they are saddled with loads of 50 to 75 pounds. Under such weight they can cover up to 20 miles in a single day. Pack trains of llamas, which can include several hundred animals, move large amounts of goods over even the very rough terrain of the Andes.
                 </p>
                 <p class="p-summary">
                     Llamas are willing pack animals but only to a point. An overloaded llama will simply refuse to move. These animals often lie down on the ground and they may spit, hiss, or even kick at their owners until their burden is lessened.
                 </p>
-                <p class="p-summary"></p>
             </article>
-            <article id ="history"> <h1>History</h1></article>
-            <article id = "behavior"> <h1>Characteristics</h1> </article>
+            <article id ="history"> 
+                <h1>History</h1>
+                <div id="llama-history"></div>
+                <div id="slidercontainer">
+                <input type="range" id ="period" min="0" max="4" step="1" list="steplist">
+                <ul class="period-labels">
+                    <li class='selected'>Pre-incan cultures</li>
+                    <li>Inca Empire</li>
+                    <li>Spanish Empire</li>
+                    <li>United States</li>
+                </ul>
+                </div>    
+            </article>
+            <article id = "characteristics"> <h1>Characteristics</h1> </article>
             <article id = "nutrition"><h1>Nutrition</h1></article>
         </section>
         
         </div>
     </div>
         <footer>
+            <!-- https://www.nationalgeographic.com/animals/mammals/l/llama/ -->
             <h3>Resources: </h3>
         </footer>
     </body>
