@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            html, body{
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+            }
+            #quiz{
+                display:block;
+                height:100%;
+            }
+            .answer{
+                display:flex;
+                justify-content: center;
+                height:100%;
+                width: 70%;
+                margin-left: 15%;
+            }
+            .options{
+                background-color: rgba(119, 93, 76, 0.65);
+                border: none;
+                padding: 0.5rem;
+                margin: 0 1rem 0 1rem;
+                text-align: center;
+                width: 20%;
+                height: 8em;
+                border-radius: 5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                letter-spacing: 0.02rem;
+                
+            }
+            
+            #question{
+                display: grid;
+                place-content: center;
+                text-align:center;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+            header{
+                margin:2em 10% 2em 10%;
+                text-align:center;
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 2em;
+                letter-spacing: -0.05em;
+                background-color: rgba(255,255,255,0.7);
+                padding: 0.5em;
+                border-radius: 5px;
+            }
+            .options:hover{
+                background-color: white;
+            }
+            p.result {
+                width:70%;
+                text-align: center;
+                font-family: sans-serif;
+                opacity: 0.8;
+                font-size: 1rem;
+                line-height: 1.5rem;
+                margin-left: 1rem;
+            }
+            img.result{
+                width:30%;
+                height:20%;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <header>Take this quiz and find your inner llama!</header>
+        <section id="quiz">
+        <div id="question"><p class = "question">You found a time machine! What are you going to do with it?</p></div>
+        <div class="answer">
+            <div class="options option0" data-value="0">I'll go to the future!</div>
+            <div class="options option1" data-value="1">I'll take a journey to the past.</div>
+            <div class="options option2" data-value="2">I'd probably just leave it there. I don't want to take a risk.</div>
+        </div>
+        </section>
+
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /*potential answers:
+        1. Llama - tough outside, soft inside
+        2. Guanaco - hella savage
+        3. Alpaca - the other guys spit? Alpaca is nice, polite, and social
+        */
+
+        /*array to keep track of answer*/
+        var score = [0, 0, 0]; /*order: [llama, Guanaco, Alpaca]*/
+        var numClick = 0;
+
+        var changeQuestion = function(numClick){
+            if(numClick == 1){
+                $('.question').text("The world is ending in three days, you...");
+                $('.option0').text("spend you life savings and go on a three-days world tour");
+                $('.option1').text("hang out with all the people you love");
+                $('.option2').text("finish that one Netflix series you are currently watching");
+            }
+            else if(numClick == 2) {
+                $('.question').text("What is your ideal weekend?");
+                $('.option0').text("Dinner at a friend's house");
+                $('.option1').text("Go to a bar and dance");
+                $('.option2').text("Netflix and chips ...with myself");
+            } else if (numClick == 3){
+                $('.question').text("What is your best quality?");
+                $('.option0').text("I care about people");
+                $('.option1').text("Physically, I'm an A+");
+                $('.option2').text("I'm very rational");
+            } 
+        }
+
+        var findMax = function(array){
+            var hasMax = 0; //points to index 0
+            for(var i = 0; i < array.length; i++){
+                if(array[i] > array[hasMax]){
+                    hasMax =i;
+                }
+            }
+            return hasMax;
+        }
+        var showResult = function(hasMax){
+            $(".answer").empty(); //clear all options. Fill this space with result
+            $('#question').empty();
+            if(hasMax == 0){
+                $('<h1>').addClass("result")
+                    .text("You, my friend, are a regular Llama.")
+                    .appendTo('#question');
+                $("<img src='./llama-quiz.jpg'>")
+                    .addClass("result")
+                    .appendTo(".answer");
+                $('<p>')
+                    .addClass("result")
+                    .text("You are known for your charm and dignified manner -- which is weird, considering you don't like humans that much. Some people told you that you're intimidating at first, but then they'll find out how wild you are right after.")
+                    .appendTo(".answer");
+            }
+            else if (hasMax == 1){
+                $('<h1>').addClass("result")
+                    .text("Oh hello, you are a Guanaco")
+                    .appendTo('#question');
+                $("<img src='./guanaco-quiz.jpg'>")
+                .addClass("result")
+                .appendTo(".answer");
+                $('<p>')
+                    .addClass("result")
+                    .html("No matter how much the humans want to cuddle you, all you <em>really</em> want to do is to spit on them and live your life in peace. Nobody dares to start a fight with you because they know you're gonna win either way. <br><strong>All hail, Guanaco!</strong>")
+                    .appendTo(".answer");
+            }
+            else if(hasMax == 2){
+                $('<h1>').addClass("result")
+                    .text("You are a Alpaca")
+                    .appendTo('#question');
+                $("<img src='./alpaca-quiz.jpg'>")
+                    .addClass("result")
+                    .appendTo(".answer");
+                $('<p>')
+                    .addClass("result")
+                    .html("You get <strong>very</strong> possesive when it comes to food. But that's understandable. Food is food, right? <br> Unlike your (much) bigger siblings, you do not spit on people that often. That's great. Keep it up!")
+                    .appendTo(".answer");
+            }
+        }
+
+        $('.options').on('click', function(){
+            var inputVal = $(this).data('value');
+            score[inputVal]++;
+            numClick++;
+            changeQuestion(numClick);
+            console.log(score[0], score[1], score[2]);
+            var hasMax = findMax(score);
+            if(numClick >=4){
+                showResult(hasMax);
+            }
+        })
+
+    </script>
+    </body>
+</html>
