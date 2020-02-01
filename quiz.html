@@ -13,9 +13,11 @@
             }
             .answer{
                 display:flex;
+                opacity:0.9;
                 justify-content: center;
                 height:100%;
                 width: 70%;
+                margin-top:1rem;
                 margin-left: 15%;
             }
             .options{
@@ -42,15 +44,18 @@
                 font-family: "Trebuchet MS", Helvetica, sans-serif;
                 font-weight: bold;
                 font-size: 1.5em;
+                opacity: 0.9;
             }
             header{
-                margin:2em 10% 2em 10%;
+                color: rgb(71, 55, 44);
+                font-weight:bolder;
+                margin:2em 10% 1em 10%;
                 text-align:center;
                 font-family:Verdana, Geneva, Tahoma, sans-serif;
-                font-size: 2em;
+                font-size: 1.5em;
                 letter-spacing: -0.05em;
                 background-color: rgba(255,255,255,0.7);
-                padding: 0.5em;
+                padding: 0.8em;
                 border-radius: 5px;
             }
             .options:hover{
@@ -73,7 +78,7 @@
         </style>
     </head>
     <body>
-        <header>Take this quiz and find your inner llama!</header>
+        <header>Take this quiz and find your inner cameloid!</header>
         <section id="quiz">
         <div id="question"><p class = "question">You found a time machine! What are you going to do with it?</p></div>
         <div class="answer">
@@ -129,7 +134,7 @@
             $('#question').empty();
             if(hasMax == 0){
                 $('<h1>').addClass("result")
-                    .text("You, my friend, are a regular Llama.")
+                    .text("You, my friend, are a  Llama.")
                     .appendTo('#question');
                 $("<img src='./llama-quiz.jpg'>")
                     .addClass("result")
